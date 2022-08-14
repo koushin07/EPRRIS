@@ -20,7 +20,7 @@
                     </svg>
                 </div>
                 <input type="text" id="table-search-equipments"
-                    class=" block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300
+                    class=" block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 
                      focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
                       dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     wire:model="search" placeholder="Search for Equipment">
@@ -36,7 +36,7 @@
                               dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600
                                dark:focus:ring-gray-700"
                             type="button">
-                          
+
                             Sort By
                             <svg class="ml-2 w-3 h-3" aria-hidden="true" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -99,44 +99,47 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($equipments as $equipment)
+                @forelse ($equipments as $equipment)
+               
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                        <th scope="row"
-                            class="flex items-center py-4  text-gray-900 whitespace-nowrap dark:text-white">
+                        <th scope="row" 
+                            @class([
+                                'flex items-center py-4  text-gray-900 whitespace-nowrap dark:text-white ',
+                                'border-l-4 border-l-green-600' => auth()->user()->municipality_id == $equipment->municipality_id,
+                            ])>
 
                             <div class="pl-3">
-                                <div class="text-base font-semibold">{{ $equipment->equipment_name }}</div>
+                                <div class="text-base font-semibold ">{{ $equipment->equipment_name }} b</div>
                                 {{-- <div class="font-normal text-gray-500">neil.sims@flowbite.com</div> --}}
                             </div>
                         </th>
                         <td class="py-4 px-6">
                             {{ $equipment->serial_number }}
                         </td>
-
-                        
                         @if ($equipment->status == 'Serviceable')
-                        <td class="py-4 px-6">
-                            <div class="flex items-center">
-                                <div class=" bg-blue-400 rounded-3xl px-1 text-white font-medium mr-2">Serviceable</div>
-                            </div>
-                        </td>
-                    @endif
-                    @if ($equipment->status == 'Poor')
-                        <td class="py-4 px-6">
-                            <div class="flex items-center ">
-                                <div class="bg-red-500 rounded-3xl px-1 text-white font-medium mr-2">Poor</div>
-                            </div>
-                        </td>
-                    @endif
-                    @if ($equipment->status == 'Unusable')
-                        <td class="py-4 px-6">
-                            <div class="flex items-center">
-                                <div class="bg-rose-400 rounded-3xl px-1 text-white font-medium mr-2">Unusable</div>
-                            </div>
-                        </td>
-                    @endif
+                            <td class="py-4 px-6">
+                                <div class="flex items-center">
+                                    <div class=" bg-blue-400 rounded-3xl px-1 text-white font-medium mr-2">Serviceable
+                                    </div>
+                                </div>
+                            </td>
+                        @endif
+                        @if ($equipment->status == 'Poor')
+                            <td class="py-4 px-6">
+                                <div class="flex items-center ">
+                                    <div class="bg-red-500 rounded-3xl px-1 text-white font-medium mr-2">Poor</div>
+                                </div>
+                            </td>
+                        @endif
+                        @if ($equipment->status == 'Unusable')
+                            <td class="py-4 px-6">
+                                <div class="flex items-center">
+                                    <div class="bg-rose-400 rounded-3xl px-1 text-white font-medium mr-2">Unusable</div>
+                                </div>
+                            </td>
+                        @endif
                         {{-- @click="modal = ! modal" --}}
                         <td class="py-4 px-6">
                             <!-- Modal toggle -->
@@ -146,7 +149,15 @@
 
                         </td>
                     </tr>
-                @endforeach
+                @empty
+              
+                <td class="py-4 px-6">
+                    <div class="flex items-center">
+                        <div class="text-base font-semibold">No Record</div>
+                    </div>
+                </td>
+                   
+                @endforelse
 
 
             </tbody>

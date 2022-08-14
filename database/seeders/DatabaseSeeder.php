@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
 
           $this->call(ProvinceSeeder::class);
         Municipality::factory(10)->create();
-        User::factory(100)->create();
+        // User::factory(100)->create();
 
         //  $this->call(MunicipalityTransactionSeeder::class);
-         $this->call(equipmentSeeder::class);
+        //  $this->call(equipmentSeeder::class);
 
       
     }

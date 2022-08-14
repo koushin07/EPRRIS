@@ -1,12 +1,19 @@
 <div>
+
     <div class="flex justify-between items-center py-4">
         <span class="font-sans text-xl subpixel-antialiased leading-relaxed text-clip hover:italic">{{ $name->municipality_name }}</span>
-        <button wire:click="$emit('openModal', 'equipment.create')"
+       @if (auth()->user()->municipality_id == $name->id)
+            <button wire:click="$emit('openModal', 'equipment.create')"
             class="   inline-flex  py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md
              text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Create
         </button>
+       @endif
+              
+     
+     
     </div>
+
 
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
         <div class="flex justify-between items-center py-4 bg-white dark:bg-gray-800">
@@ -36,8 +43,7 @@
                              hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5
                               dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600
                                dark:focus:ring-gray-700"
-                            type="button">
-                          
+                            type="button">                          
                             Sort By
                             <svg class="ml-2 w-3 h-3" aria-hidden="true" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

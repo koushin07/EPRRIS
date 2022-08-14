@@ -9,7 +9,7 @@ use LivewireUI\Modal\ModalComponent;
 class Edit extends ModalComponent
 {
 
-    public Equipment $equipment;
+    protected Equipment $equipment;
        
     public function mount(Equipment $equipment)
     {

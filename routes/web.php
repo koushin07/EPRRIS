@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\Users\PagesController;
+use App\Http\Controllers\Transactions\MunicipalityTransactionController;
 use App\Http\Controllers\Municipality\EquipmentController;
 
 
@@ -24,9 +25,15 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => 'auth'], function () {
+    //all auth user
     Route::get('/dashboard', [PagesController::class, 'index'])->name('dashboard');
     Route::get('/municipality/{id}', [PagesController::class, 'show'])->name('municipality');
     Route::resource('equipment', EquipmentController::class);
+
+    //municipality 
+    Route::group(['middleware' => 'role:municipality', 'prefix' => 'municipality', 'as' => 'municipality.'], function(){
+        Route::resource('transaction', MunicipalityTransactionController::class);
+    });
 });
 
 

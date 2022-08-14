@@ -3,7 +3,12 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\User;
+use App\Models\Municipality;
+use App\Models\Equipment;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
+        Gate::define('update-equipment', fn(User $user, Equipment $equipment) => $user->municipality_id == $equipment->municipality_id);
+        Gate::define('create-equipment', fn(User $user) =>  $user->role ==  'municipality');
     }
 }
