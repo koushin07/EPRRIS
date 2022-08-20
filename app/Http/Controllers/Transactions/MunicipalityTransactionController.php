@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Transactions;
 
+use App\Events\MunicipalityTransactionEvent;
 use Illuminate\Http\Request;
 use App\Services\MunicipalityTransactionService;
 use App\Models\MunicipalityTransaction;
@@ -45,51 +46,18 @@ class MunicipalityTransactionController extends Controller
      */
     public function store(CreateRequest $request)
     {
-
-        
-        $request->validated();
-        $check = $this->MTService->isEquipmentAvailable($request);
-
-
-        if (empty($check)) {
-
-            return back()->with('error', 'Equipment not found');
+        if ($this->MTService->isEquipmentAvailable( $request->validated())) {
+            return back()->with('success', 'Request Sent');
         }
-
-
-        if ($check['borrow_id'] != '') {
-
-            $this->softDelete($check['borrow_id']);
-
-            MunicipalityTransaction::create([
-                'municipality_id' => auth()->user()->municipality_id,
-                'equipment_id' => $check['equipment_id'],
-            ]);
-            return back();
-
-        }
-
-        MunicipalityTransaction::create([
-            'municipality_id' => auth()->user()->municipality_id,
-            'equipment_id' => $check['equipment_id'],
-        ]);
-
-        $equipmentId = $check['equipment_id'];
-        $owner = Municipality::with(['equipment' => function ($q) use ($equipmentId) {
-            return $q->find($equipmentId);
-        }])
-            ->where('id', '=', $check['owner'])->first();
-
-        // borrowEvent::dispatch($owner);
-
-        return back()->with('success', 'Request Sent');
+       return back()->with('error', 'equipment not available');
+ 
 
     }
 
     public function softDelete($id)
     {
 
-       
+
         $borrows = MunicipalityTransaction::find($id);
         $borrows->delete();
         return back()->with('success', 'Request Sent');
@@ -103,7 +71,7 @@ class MunicipalityTransactionController extends Controller
      */
     public function show($id)
     {
-        //
+       return view('transaction.show');
     }
 
     /**

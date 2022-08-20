@@ -34,6 +34,7 @@ class CreateEquipmentRequest extends FormRequest
             'status'  => 'required',
             'asset_id'  => 'required',
             'remarks'  => 'required',
+            'quantity' =>'required',
         ];
     }
 }

@@ -29,7 +29,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+       
         Gate::define('update-equipment', fn(User $user, Equipment $equipment) => $user->municipality_id == $equipment->municipality_id);
-        Gate::define('create-equipment', fn(User $user) =>  $user->role ==  'municipality');
+        Gate::define('municipality', fn(User $user) =>  $user->role ==  'municipality');
+        Gate::define('province', fn(User $user) => $user->role == 'province');
     }
 }

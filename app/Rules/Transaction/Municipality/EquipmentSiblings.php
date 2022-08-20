@@ -26,6 +26,7 @@ class EquipmentSiblings implements Rule
      */
     public function passes($attribute, $value)
     {
+   
         return  Equipment::where('equipment_name', $value)->first() != '';
     }
 

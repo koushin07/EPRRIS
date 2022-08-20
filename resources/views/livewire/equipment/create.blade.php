@@ -10,7 +10,7 @@
                             Name</label>
                         <input type="text" name="equipment_name" id="equipment_name"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            required="">
+                            required>
                         @error('equipment_name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -20,7 +20,7 @@
                         <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                         <select type="text" name="status" id="status"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            required="">
+                            required>
 
                             <option value="Serviceable">Serviceable</option>
                             <option value="Poor">Poor</option>
@@ -38,7 +38,7 @@
                     <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                         <label for="model_number" class="block text-sm font-medium text-gray-700">Model
                             Number</label>
-                        <input type="number" name="model_number" id="model_number" required=""
+                        <input type="number" name="model_number" id="model_number" required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
 
@@ -46,7 +46,7 @@
 
                     <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                         <label for="serial_number" class="block text-sm font-medium text-gray-700">Serial Number</label>
-                        <input type="number" name="serial_number" id="serial_number" required=""
+                        <input type="number" name="serial_number" id="serial_number" required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
 
@@ -54,7 +54,7 @@
                     <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                         <label for="unit" class="block text-sm font-medium text-gray-700">Unit
                         </label>
-                        <input type="number" name="unit" id="unit" required=""
+                        <input type="number" name="unit" id="unit" required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
 
@@ -71,7 +71,7 @@
                         </label>
                         <input type="number" name="asset_id" id="asset_id"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            required="">
+                            required>
 
                     </div>
 
@@ -82,7 +82,7 @@
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-                    <select id="category" name="category" required=""
+                    <select id="category" name="category" required
                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 
                         <option value="Category1">Category 1</option>
@@ -96,13 +96,13 @@
 
                 <div class="col-span-6">
                     <label for="asset_desc" class="block text-sm font-medium text-gray-700">Asset Description</label>
-                    <input type="text" name="asset_desc" id="asset_desc" required=""
+                    <input type="text" name="asset_desc" id="asset_desc" required
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
 
                 <div class="col-span-6">
                     <label for="remarks" class="block text-sm font-medium text-gray-700">Remarks</label>
-                    <input type="text" name="remarks" id="remarks" required=""
+                    <input type="text" name="remarks" id="remarks" required
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
 
@@ -110,10 +110,15 @@
 
 
             </div>
-            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                <button type="submit"
+           
+                <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
+                    <input class="mb-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md" 
+                    type="number" name="quantity" id="quantity" placeholder="Quantity">
+                     <button type="submit"
                     class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
-            </div>
+        
+                </div>
+               
         </div>
     </form>
 </div>

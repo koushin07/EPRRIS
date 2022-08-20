@@ -27,8 +27,9 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'equipment_name' =>new EquipmentSiblings,
+            'equipment_name' => new EquipmentSiblings,
             'municipality_name' => new MunicipalitySiblings,
+            'quantity'=>'required'
 
         ];
     }

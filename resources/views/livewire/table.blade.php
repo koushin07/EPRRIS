@@ -111,7 +111,7 @@
                             ])>
 
                             <div class="pl-3">
-                                <div class="text-base font-semibold ">{{ $equipment->equipment_name }} b</div>
+                                <div class="text-base font-semibold ">{{ $equipment->equipment_name }}</div>
                                 {{-- <div class="font-normal text-gray-500">neil.sims@flowbite.com</div> --}}
                             </div>
                         </th>
@@ -151,10 +151,19 @@
                     </tr>
                 @empty
               
-                <td class="py-4 px-6">
-                    <div class="flex items-center">
+                <td class="py-4 px-6 bg-white">
+                    <div class="flex items-center bg">
                         <div class="text-base font-semibold">No Record</div>
                     </div>
+                </td>
+                <td class="py-4 px-6 bg-white">
+                   
+                </td>
+                <td class="py-4 px-6 bg-white">
+                   
+                </td>
+                <td class="py-4 px-6 bg-white">
+                   
                 </td>
                    
                 @endforelse

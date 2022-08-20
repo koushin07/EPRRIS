@@ -21,6 +21,7 @@ class Equipment extends Model
         'status',
         'asset_id',
         'remarks',
+        'quantity',
     ];
 
 

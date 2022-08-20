@@ -1,0 +1,11 @@
+full transactions
+ 
+Todo:
+ 1 fire event. send notificaiton to auth province
+ 2 province ACCEPT or DENY Cross Transction
+  #if accept
+   *fire event to send notifcation to the RDRRMC and the province of the owner
+  #if deny
+  *fire back event to the requester 
+ 3 last fire event notification the owner and fire event the requester request is accepted
+

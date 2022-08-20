@@ -22,7 +22,7 @@ class Table extends Component
     }
     public function sorting($sort)
     {
-        // dd($sort);
+
         $this->sortBy=$sort;
         
     }

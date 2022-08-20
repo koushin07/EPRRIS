@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
             $table->foreignId('municipality_id')->constrained();
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->string('status');
             $table->integer('asset_id');
             $table->string('remarks');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

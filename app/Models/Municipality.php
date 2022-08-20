@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Municipality extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
    protected $fillabe=['municipality_name'];
 
@@ -18,6 +19,11 @@ class Municipality extends Model
 
    public function user()
    {
-    return $this->belongsTo(User::class);
+    return $this->hasMany(User::class);
+   }
+
+   public function province()
+   {
+    return $this->belongsTo(Province::class);
    }
 }

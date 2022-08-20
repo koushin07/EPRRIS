@@ -11,7 +11,7 @@ use App\Models\Equipment;
 use App\Http\Requests\UpdateEquipmentRequest;
 use App\Http\Requests\CreateEquipmentRequest;
 use App\Http\Controllers\Controller;
-use App\Jobs\ProcessEquipmentJob;
+use App\Services\EquipmentService;
 
 class EquipmentController extends Controller
 {
@@ -42,27 +42,11 @@ class EquipmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateEquipmentRequest $request)
+    public function store(CreateEquipmentRequest $request, EquipmentService $equipmentService)
     {
-       
-        $this->authorize('create-equipment');
-        // $request->validated();
-        // Equipment::create([
-        //     'equipment_name' => $request->equipment_name,
-        //     'municipality_id' => auth()->user()->municipality_id,
-        //     'code' => $request->code,
-        //     'asset_desc' => $request->asset_desc,
-        //     'category' => $request->category,
-        //     'unit' => $request->unit,
-        //     'model_number' => $request->model_number,
-        //     'serial_number' => $request->serial_number,
-        //     'status' => $request->status,
-        //     'asset_id' => $request->asset_id,
-        //     'remarks' => $request->remarks,
-        // ]);
 
-            ProcessEquipmentJob::dispatch();
-        // Session::put('equipment_added', $request->equipment_name);
+        $this->authorize('municipality');
+        $equipmentService->insertData($request->validated());
         return back()->with('success', $request->equipment_name . ' ' .'is added');
     }
 
@@ -74,9 +58,9 @@ class EquipmentController extends Controller
      */
     public function show($id)
     {
-         
+
         return view('equipment.show', [
-           'id' => $id
+            'id' => $id
         ]);
     }
 
@@ -89,6 +73,4 @@ class EquipmentController extends Controller
         $equipment->update($request->validated());
         return back()->with('success', 'Successfully Updated', 'yes');
     }
-
-   
 }

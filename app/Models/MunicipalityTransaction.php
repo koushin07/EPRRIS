@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class MunicipalityTransaction extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable =['municipality_id', 'equipment_id'];
+    protected $fillable =['municipality_id', 'equipment_id', 'quantity'];
 
     public function equipment()
     {

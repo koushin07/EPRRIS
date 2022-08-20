@@ -17,13 +17,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-          $this->call(ProvinceSeeder::class);
-        Municipality::factory(10)->create();
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@admin.admin',
+            'municipality_id'=>null,
+            'province_id'=>null,
+            'password' => bcrypt("admin"), // password
+            'role' => 'rdrrmc',
+        ]);
+        //   $this->call(ProvinceSeeder::class);
+        // Municipality::factory(10)->create();
         // User::factory(100)->create();
 
         //  $this->call(MunicipalityTransactionSeeder::class);
         //  $this->call(equipmentSeeder::class);
 
-      
+
     }
 }

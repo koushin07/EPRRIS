@@ -2,10 +2,17 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use Illuminate\Auth\Events\Registered;
+use App\Listeners\toAdminTransactionListener;
+use App\Listeners\MunicipalityTransactionListener;
+use App\Listeners\MtoPTransactionListener;
+use App\Events\toAdminTransactionEvent;
+use App\Events\MunicipalityTransactionEvent;
+use App\Events\MtoPTransactionEvent;
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +25,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        MunicipalityTransactionEvent::class =>[
+            MunicipalityTransactionListener::class,
+        ],
+        MtoPTransactionEvent::class =>[
+            MtoPTransactionListener::class
+        ],
+        toAdminTransactionEvent::class => [
+            toAdminTransactionListener::class
+        ]
     ];
 
     /**
